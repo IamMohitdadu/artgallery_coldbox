@@ -37,34 +37,14 @@ component{
 	* index
 	*/
 	function index( event, rc, prc ){
-		// param an incoming variable.
-		event.paramValue( "name", "nobody" );
-		// set a private variable
-		prc.when = dateFormat( now(), "full" );
-		// set the view to render
-		prc.art = galleryService.getAllArt();
-		// event.renderData( data=prc.aContacts, formats="xml,json,pdf,html" );
-		event.setView( "gallery/index" );
+		
+		if(structKeyExists(session, 'isLogin'))
+		{
+			prc.profile = galleryService.myprofile();
+			event.setView( "myprofile/index" );
+		} else {
+			setNextEvent('signin.login');
+		}	
 	}
 	
-	function getArt( event, rc, prc ){
-		var data = event.getCollection();
-		prc.art = galleryService.getArt(data.userid);
-		event.setView( "gallery/index" );
-	}
-
-	function myArts( event, rc, prc ){
-       if (isdefined('session.userid') and structKeyExists(session, 'isLogin') and structKeyExists(session, 'userid')) {
-		   var userid = session.userid;		
-		   var data = event.getCollection();
-			prc.art = galleryService.getArt(data.userid);
-			event.setView( "gallery/index" );
-		} else {
-			prc.error = "session timeout! please login again.";
-			flash.put( "notice", prc.error );
-			setNextEvent('signin.login');
-		}
-	   
-
-	}
 }

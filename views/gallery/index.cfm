@@ -13,11 +13,12 @@
 <!--- 		margin:0px; --->
 	}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 
 <cfoutput>
 <!--- #html.table( data=prc.art, class="table table-striped" )# --->
 </cfoutput>
-<div class="gallery" style="text-align:center;">
+<div class="tz-gallery gallery" style="text-align:center;">
 	<h3 style="color:gray; text-transform: uppercase;">Gallery</h3>
 	<cfoutput query="prc.art" >
 		<a class="lightbox" href="#prc.art.ImageFile#">
@@ -29,3 +30,6 @@
 		</a>
 	</cfoutput>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script> baguetteBox.run('.tz-gallery'); </script>

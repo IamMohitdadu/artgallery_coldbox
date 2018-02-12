@@ -66,7 +66,7 @@
                     <i class="glyphicon glyphicon-user"></i> #session.username# <b class="caret"></b>
                   </a>
                   <ul id="actions-submenu" class="dropdown-menu">
-                    <li><a href=""><i class="glyphicon glyphicon-user"></i> Setting</a></li>
+                    <li><a href="#event.buildLink( "myprofile" )#"><i class="glyphicon glyphicon-user"></i> Setting</a></li>
                     <li><a href="#event.buildLink( "addart" )#"><i class="glyphicon glyphicon-user"></i> Add Art</a></li>
                     <li><a href="#event.buildLink( "logout.logoutUser" )#"><i class="glyphicon glyphicon-user"></i> logout</a></li>
                   </ul>

@@ -67,10 +67,10 @@ component singleton accessors="true"{
 	/**
 	* Login
 	*/
-	function login(rc){
+	function login(data){
 
-		setEmail(rc.email);
-		setPassword(rc.password);
+		setEmail(data.email);
+		setPassword(data.password);
 		var login = structNew();
 		login.status = "false";
 		login.data = "";
@@ -83,7 +83,7 @@ component singleton accessors="true"{
 
 		myQry = new Query();
 		myQry.setDatasource("artgallery"); 
-		myQry.setSQL("SELECT NAME, ADDRESS, EMAIL FROM [dbo].[User] 
+		myQry.setSQL("SELECT NAME, ADDRESS, EMAIL, USERID FROM [dbo].[User] 
 					  WHERE EMAIL=:email and PASSWORD=:password");
 		myQry.addParam(name="email",value="#email#",cfsqltype="VARCHAR");
     	myQry.addParam(name="password",value="#hash(password)#",cfsqltype="VARCHAR");
@@ -98,6 +98,7 @@ component singleton accessors="true"{
 		login.status = "true";
 		login.data = myQuery.getResult();
 		session.username = login.data.name;
+		session.userId = login.data.userid;
 		session.isLogin = "true";
 	
  		return login;
@@ -107,14 +108,17 @@ component singleton accessors="true"{
 	/**
 	* Registration
 	*/
-	function registration(rc){
-
-		setName(trim(rc.name));
-		setEmail(trim(rc.email));
-		setPassword(trim(rc.password));
-		setAddress(trim(rc.address));
-		setContact(trim(rc.contact));
-		setCpassword(trim(rc.cpassword));
+	function registration(data){
+		if(structIsEmpty(data)){
+			register.data="Registration Failed. Please fill the required columns.";
+			return register;
+		}
+		setName(trim(data.name));
+		setEmail(trim(data.email));
+		setPassword(trim(data.password));
+		setAddress(trim(data.address));
+		setContact(trim(data.contact));
+		setCpassword(trim(data.cpassword));
 		var register = structNew();
 		register.status = "false";
 		register.data = "";
@@ -122,7 +126,7 @@ component singleton accessors="true"{
 
 		if(name == '' or email == '' or password == '' or contact == '' or address == '' or 
 		cpassword == '' or password != cpassword ){
-			register.data="Registration Failed. Please enter the valid details.";
+			register.data="Registration Failed. Please fill the required columns.";
 			return register;
 		}
 
@@ -160,12 +164,12 @@ component singleton accessors="true"{
 	/**
 	* addart
 	*/
-	function addart(rc){
+	function addart(data){
 
-		setImageFile(rc.ImageFile);
-		setImageName(rc.ImageName);
-		setImageDescription(rc.ImageDescription);
-		setUserId(rc.UserId);
+		setImageFile(data.ImageFile);
+		setImageName(data.ImageName);
+		setImageDescription(data.ImageDescription);
+		setUserId(data.UserId);
 		writeDump(imagefile);
 		abort;
 		var login = structNew();
@@ -199,6 +203,23 @@ component singleton accessors="true"{
 	
  		return login;
 
+	}
+/**
+	* myprofile
+	*/
+	function myprofile(){
+
+		userid = session.userid;
+
+		myQry = new Query();
+		myQry.setDatasource("artgallery"); 
+		myQry.setSQL("SELECT NAME, ADDRESS, EMAIL, CONTACT, COMMENT FROM [dbo].[User] 
+					  WHERE USERID=:userid");
+		myQry.addParam(name="userid",value="#userid#",cfsqltype="VARCHAR");
+		myQuery = myQry.execute();
+		profile.data = myQuery.getResult();
+
+		return profile.data;
 	}
 
 }

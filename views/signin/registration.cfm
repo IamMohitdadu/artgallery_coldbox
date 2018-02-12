@@ -6,6 +6,10 @@
 
 <cfoutput>
 
+<cfif flash.exists( "notice" )>
+  <div class="alert alert-info">#flash.get( "notice" )#</div>
+</cfif>
+
 <div class="container">
   <br><br><br>
   <div class="row">
@@ -15,6 +19,11 @@
           <h3 class="panel-title">Create New Account!</h3>
         </div>
         <div class="panel-body">
+                
+        <cfif structKeyExists(prc, 'data')>
+          <span class="fa fa-circle-sm icon-resize-small" aria-hidden="true" style="color: red">#prc.data#</span>
+        </cfif>
+        
 <!---
           <cfif event.isArgDefined('registration_success')>
             <cfset Local.data = arguments.event.getArg('registration_data')/>
