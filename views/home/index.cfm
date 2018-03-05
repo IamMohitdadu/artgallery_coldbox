@@ -7,30 +7,30 @@
 
 <cfoutput>
 
-<!--- Page Content --->
-<div class="container">
-  <!--- Introduction Row --->
-  <h1 class="" align="center">
-    <small>"Great things are done by a series of small things brought together."</small>
-  </h1>
-<!---   <p align="center">Welcome to the Art Gallery.</p> --->
-  <hr style="height: 10px; border: 0; box-shadow: 0 10px 10px -10px black inset;">
-  <!--- Team Members Row --->
-  <div class="row">
-    <div class="pull-right col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 20px;">
-<!---       <input type="search" class="pull-right form-control" style="width:200px;" name="search" id="search" placeholder="Search"> --->
+  <!--- Page Content --->
+  <div class="container">
+    <!--- Introduction Row --->
+    <h1 class="" align="center">
+      <small>"Great things are done by a series of small things brought together."</small>
+    </h1>
+  <!---   <p align="center">Welcome to the Art Gallery.</p> --->
+    <hr style="height: 10px; border: 0; box-shadow: 0 10px 10px -10px black inset;">
+    <!--- Team Members Row --->
+    <div class="row">
+      <div class="pull-right col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 20px;">
+  <!---       <input type="search" class="pull-right form-control" style="width:200px;" name="search" id="search" placeholder="Search"> --->
+      </div>
+  <!---     #html.table( data=prc.artists, class="table table-striped" )# --->
     </div>
-<!---     #html.table( data=prc.artists, class="table table-striped" )# --->
   </div>
-</div>
 
 </cfoutput>
 
 <div class="col-sm-12">
   <div class="col-md-3">
     <h3>Welcome to Art Gallery</h3>
-    <p style="color:gray;">Welcome to the original gallery Sławek Gruca. 
-The formula of the gallery allows us to display works directly in connection with the website www.slawekgruca.com, regardless of their functioning in various types of internet galleries. This solution gives you the opportunity to buy work directly from the creator, allows you to book them, and in most cases also allows you to negotiate prices. 
+    <p style="color:gray;">Welcome to the Art gallery. 
+The formula of the gallery allows us to display works directly, regardless of their functioning in various types of internet galleries. This solution gives you the opportunity to buy work directly from the creator, allows you to book them, and in most cases also allows you to negotiate prices. 
 The gallery is updated on a regular basis, which, we believe, will facilitate the review of work for those interested in a possible purchase. 
 We also strongly encourage you to sign up for our mailing list, thanks to which we will be able to inform you about new items in the gallery.</p>
   </div>

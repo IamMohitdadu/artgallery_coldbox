@@ -19,6 +19,7 @@
       <!---css --->
       <link href="includes/css/bootstrap.min.css" rel="stylesheet">
       <link href="includes/css/main.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <!---js --->
       <script src="includes/js/jquery.js"></script>
       <script src="includes/js/bootstrap.min.js"></script>
@@ -50,11 +51,19 @@
                   <i class="glyphicon glyphicon-home"></i> Home
                 </a>
               </li>
-              <li>
-                <a href="#event.buildLink( "gallery" )#" >
-                  <i class="glyphicon glyphicon-book"></i> Gallery
-                </a>
-              </li>
+              <cfif isdefined('session.username') and structKeyExists(session, 'isLogin') and structKeyExists(session, 'isLogin') >
+                <li>
+                  <a href="#event.buildLink( "gallery.myArts" )#" >
+                    <i class="glyphicon glyphicon-book"></i> My Gallery
+                  </a>
+                </li>
+              <cfelse>
+                <li>
+                  <a href="#event.buildLink( "gallery" )#" >
+                    <i class="glyphicon glyphicon-book"></i> Gallery
+                  </a>
+                </li>
+              </cfif>
               <li>
                 <a href="#event.buildLink( "contact" )#" >
                   <i class="glyphicon glyphicon-bell"></i> Contact Us
@@ -66,8 +75,8 @@
                     <i class="glyphicon glyphicon-user"></i> #session.username# <b class="caret"></b>
                   </a>
                   <ul id="actions-submenu" class="dropdown-menu">
-                    <li><a href="#event.buildLink( "myprofile" )#"><i class="glyphicon glyphicon-user"></i> Setting</a></li>
-                    <li><a href="#event.buildLink( "addart" )#"><i class="glyphicon glyphicon-user"></i> Add Art</a></li>
+                    <li><a href="#event.buildLink( "myprofile" )#"><i class="glyphicon glyphicon-user"></i> Privacy</a></li>
+                    <li><a href="#event.buildLink( "addart" )#"><i class="glyphicon glyphicon-user"></i> Add New Art</a></li>
                     <li><a href="#event.buildLink( "logout.logoutUser" )#"><i class="glyphicon glyphicon-user"></i> logout</a></li>
                   </ul>
                 </li>

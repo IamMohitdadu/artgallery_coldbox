@@ -1,0 +1,14 @@
+/* gallery */
+
+.lightbox img {
+  border : 1px solid lightgray;
+  padding : 20px;
+  margin:5px;
+}
+.lightbox img:hover {
+  border : 1px solid lightgray;
+  padding : 0px;
+}
+.container {
+  padding:0px;
+}

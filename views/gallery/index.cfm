@@ -1,23 +1,12 @@
-<style>
-	.lightbox img {
-		border : 1px solid lightgray;
-		padding : 20px;
-		margin:5px;
-	}
-	.lightbox img:hover {
-		border : 1px solid lightgray;
-		padding : 0px;
-	}
-	.container {
-		padding:0px;
-<!--- 		margin:0px; --->
-	}
-</style>
+<!--- Gallery app  --->
+
+<link rel="stylesheet" href="includes/css/gallery.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 
 <cfoutput>
-<!--- #html.table( data=prc.art, class="table table-striped" )# --->
+	<!--- #html.table( data=prc.art, class="table table-striped" )# --->
 </cfoutput>
+
 <div class="tz-gallery gallery" style="text-align:center;">
 	<h3 style="color:gray; text-transform: uppercase;">Gallery</h3>
 	<cfoutput query="prc.art" >

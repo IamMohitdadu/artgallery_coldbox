@@ -14,6 +14,7 @@ component singleton accessors="true"{
 	property name="ImageName" type="string" default="";	
 	property name="ImageDescription" type="string" default="";	
 	property name="UserId" type="string" default="";	
+	property name="Comment" type="string" default="";	
 
 	/**
 	 * Constructor
@@ -40,7 +41,6 @@ component singleton accessors="true"{
 	* getAllArts
 	*/
 	function getAllArt(){
-
 		myQry = new Query();
 		myQry.setDatasource("artgallery"); 
 		myQry.setSQL("SELECT * FROM gallery");
@@ -53,12 +53,10 @@ component singleton accessors="true"{
 	* getArt of an artist
 	*/
 	function getArt(userid){
-
 		myQry = new Query();
 		myQry.setDatasource("artgallery"); 
 		myQry.setSQL("SELECT * FROM gallery WHERE USERID=:userid");
 		myQry.addParam(name="userid",value="#userid#",cfsqltype="VARCHAR");
-		
 		myQuery = myQry.execute();
 
  		return myQuery.getResult();
@@ -68,7 +66,6 @@ component singleton accessors="true"{
 	* Login
 	*/
 	function login(data){
-
 		setEmail(data.email);
 		setPassword(data.password);
 		var login = structNew();
@@ -98,21 +95,22 @@ component singleton accessors="true"{
 		login.status = "true";
 		login.data = myQuery.getResult();
 		session.username = login.data.name;
-		session.userId = login.data.userid;
+		session.userid = login.data.userid;
 		session.isLogin = "true";
 	
  		return login;
-
 	}
 
 	/**
 	* Registration
 	*/
 	function registration(data){
+
 		if(structIsEmpty(data)){
 			register.data="Registration Failed. Please fill the required columns.";
 			return register;
 		}
+		
 		setName(trim(data.name));
 		setEmail(trim(data.email));
 		setPassword(trim(data.password));
@@ -159,13 +157,12 @@ component singleton accessors="true"{
  		return register;
 		// writeDump(myQuery.getPrefix());
  		// return myQuery.getResult();
-
 	}
+
 	/**
 	* addart
 	*/
 	function addart(data){
-
 		setImageFile(data.ImageFile);
 		setImageName(data.ImageName);
 		setImageDescription(data.ImageDescription);
@@ -202,15 +199,13 @@ component singleton accessors="true"{
 		session.isLogin = "true";
 	
  		return login;
-
 	}
-/**
+	
+	/**
 	* myprofile
 	*/
 	function myprofile(){
-
 		userid = session.userid;
-
 		myQry = new Query();
 		myQry.setDatasource("artgallery"); 
 		myQry.setSQL("SELECT NAME, ADDRESS, EMAIL, CONTACT, COMMENT FROM [dbo].[User] 
@@ -220,6 +215,43 @@ component singleton accessors="true"{
 		profile.data = myQuery.getResult();
 
 		return profile.data;
+	}
+
+	/**
+	* edit profile details
+	*/
+	function editprofile(data){
+		setName(trim(data.Name));
+		setContact(trim(data.Contact));
+		setAddress(trim(data.Address));
+		setComment(trim(data.Comment));
+		setUserId(session.userid);
+		myQry = new Query();
+		myQry.setDatasource("artgallery"); 
+		myQry.setSQL("UPDATE [dbo].[User] 
+					  SET Name=:name, Address=:address, Contact=:contact, Comment=:comment
+					  WHERE USERID=:userid");
+		myQry.addParam(name="name",value="#name#",cfsqltype="VARCHAR");
+		myQry.addParam(name="address",value="#address#",cfsqltype="VARCHAR");
+		myQry.addParam(name="contact",value="#contact#",cfsqltype="VARCHAR");
+		myQry.addParam(name="comment",value="#comment#",cfsqltype="VARCHAR");
+    	myQry.addParam(name="userid",value="#userid#",cfsqltype="VARCHAR");
+		myQuery = myQry.execute();
+		// writeDump(myQuery);
+		// var recordFound = myQuery.getResult().recordCount;
+		// writeDump(recordFound);
+		// abort;
+
+/*		if(recordFound != 1){
+			login.data = "User not available. Please enter the valid details.";
+			return login;
+		}
+*/
+		updateprofile = structNew();
+		updateprofile.status = "true";
+		updateprofile.data = "successfully updated.";
+
+ 		return updateprofile;
 	}
 
 }

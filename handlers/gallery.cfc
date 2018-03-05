@@ -57,7 +57,7 @@ component{
        if (isdefined('session.userid') and structKeyExists(session, 'isLogin') and structKeyExists(session, 'userid')) {
 		   var userid = session.userid;		
 		   var data = event.getCollection();
-			prc.art = galleryService.getArt(data.userid);
+			prc.art = galleryService.getArt(userid);
 			event.setView( "gallery/index" );
 		} else {
 			prc.error = "session timeout! please login again.";

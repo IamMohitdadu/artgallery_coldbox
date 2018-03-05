@@ -1,8 +1,10 @@
+<!--- Contact App  --->
+
 <cfoutput>
-<h1>Contact Us</h1>
-<p style="color:gray;">If you have any questions, please feel free to contact us at the email address provided below. 
-Thank you!</p>
-<h3><a href="mailto: mohitd@mindfiresolutions.com"><strong> mohitd@mindfiresolutions.com</strong></a></h3>
+  <h1>Contact Us</h1>
+  <p style="color:gray;">If you have any questions, please feel free to contact us at the email address provided below. 
+  Thank you!</p>
+  <h3><a href="mailto: mohitd@mindfiresolutions.com"><strong> mohitd@mindfiresolutions.com</strong></a></h3>
 </cfoutput>
 
 <!DOCTYPE html>
